@@ -6,6 +6,7 @@ var fs = require('fs'),
     rollup = require('rollup'),
     buble = require('rollup-plugin-buble'),
     json = require('rollup-plugin-json'),
+    inject = require('rollup-plugin-inject'),
     minify = require('uglify-js').minify,
     pkg = require('./package.json');
 
@@ -23,10 +24,14 @@ rollup.rollup({
   entry: pkg.build.entry,
   plugins: [
     json(),
-    buble()
+    buble(),
+    inject({
+      ol: 'openlayers'
+    })
   ]
 }).then(bundle => {
   var result = bundle.generate({
+    globals: { openlayers: 'ol' },
     format: 'umd',
     moduleName: pkg.build.moduleName,
     banner: banner

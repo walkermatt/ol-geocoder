@@ -2,14 +2,16 @@
  * ol3-geocoder - v2.5.0
  * A geocoder extension for OpenLayers.
  * https://github.com/jonataswalker/ol3-geocoder
- * Built: Mon Sep 25 2017 16:42:52 GMT+0100 (BST)
+ * Built: Fri Oct 06 2017 15:47:28 GMT+0100 (BST)
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.Geocoder = factory());
-}(this, (function () { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('openlayers')) :
+	typeof define === 'function' && define.amd ? define(['openlayers'], factory) :
+	(global.Geocoder = factory(global.ol));
+}(this, (function (ol) { 'use strict';
+
+ol = 'default' in ol ? ol['default'] : ol;
 
 var inputQueryId = "gcd-input-query";
 var inputResetId = "gcd-input-reset";
