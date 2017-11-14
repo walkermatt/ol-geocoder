@@ -112,7 +112,8 @@ export class Nominatim {
     this.clearResults();
     U.addClass(this.els.reset, klasses.spin);
 
-    ajax.url = document.location.protocol + provider.url;
+    ajax.url = (provider.url.startsWith('http')) ?
+          provider.url : document.location.protocol + provider.url;
     ajax.data = provider.params;
 
     if (provider.callbackName) {

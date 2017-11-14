@@ -2,7 +2,7 @@
  * ol3-geocoder - v2.5.0
  * A geocoder extension for OpenLayers.
  * https://github.com/jonataswalker/ol3-geocoder
- * Built: Thu Nov 02 2017 18:16:13 GMT+0000 (GMT)
+ * Built: Tue Nov 14 2017 19:53:45 GMT+0000 (GMT)
  */
 
 (function (global, factory) {
@@ -776,7 +776,7 @@ Pelias.prototype.handleResponse = function handleResponse (results) {
 var Google = function Google() {
 
   this.settings = {
-    url: '//maps.googleapis.com/maps/api/geocode/json',
+    url: 'https://maps.googleapis.com/maps/api/geocode/json',
     params: {
       address: '',
       key: '',
@@ -1019,7 +1019,8 @@ Nominatim.prototype.query = function query (q) {
   this.clearResults();
   utils.addClass(this.els.reset, klasses$1.spin);
 
-  ajax.url = document.location.protocol + provider.url;
+  ajax.url = (provider.url.startsWith('http')) ?
+        provider.url : document.location.protocol + provider.url;
   ajax.data = provider.params;
 
   if (provider.callbackName) {
