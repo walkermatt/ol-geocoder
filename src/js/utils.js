@@ -27,7 +27,13 @@ export default {
         when = {},
         onload = () => {
           if (xhr.status === 200) {
-            when.ready.call(undefined, JSON.parse(xhr.response));
+            let json = null;
+            try {
+              json = JSON.parse(xhr.response);
+            } catch (e) {
+              console.error('Error parsing JSON response');
+            }
+            when.ready.call(undefined, json);
           }
         },
         onerror = () => {

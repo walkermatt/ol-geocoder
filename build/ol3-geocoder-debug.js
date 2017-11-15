@@ -2,7 +2,7 @@
  * ol3-geocoder - v2.5.0
  * A geocoder extension for OpenLayers.
  * https://github.com/jonataswalker/ol3-geocoder
- * Built: Thu Nov 02 2017 18:16:13 GMT+0000 (GMT)
+ * Built: Wed Nov 15 2017 09:41:03 GMT+0000 (GMT)
  */
 
 (function (global, factory) {
@@ -107,7 +107,13 @@ var utils = {
         when = {},
         onload = function () {
           if (xhr.status === 200) {
-            when.ready.call(undefined, JSON.parse(xhr.response));
+            var json = null;
+            try {
+              json = JSON.parse(xhr.response);
+            } catch (e) {
+              console.log('Error parsing JSON response');
+            }
+            when.ready.call(undefined, json);
           }
         },
         onerror = function () {
