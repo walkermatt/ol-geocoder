@@ -190,11 +190,17 @@ export class Nominatim {
       })
       .catch(err => {
         removeClass(this.els.reset, klasses.spin);
-        const li = createElement(
-          'li',
-          '<h5>Error! No internet connection?</h5>',
-        );
-        this.els.result.appendChild(li);
+        const resultErrorMessage =
+          this.options.hasOwnProperty('resultErrorMessage')
+            ? this.options.resultErrorMessage
+            : 'Error! No internet connection?';
+        if (resultErrorMessage) {
+          const li = createElement(
+            ['li', { classname: 'gcd-result-error' }],
+            resultErrorMessage
+          );
+          this.els.result.appendChild(li);
+        }
       });
   }
 

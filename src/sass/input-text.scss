@@ -122,6 +122,11 @@ ul.#{map-get($input-text, result)} {
         background-color: rgb(212, 212, 212);
       }
     }
+
+  }
+
+  > li.gcd-result-error {
+    padding: 5px;
   }
 
   > li:nth-child(odd) {

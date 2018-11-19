@@ -33,7 +33,8 @@
     targetType: 'text-input',
     lang: 'en',
     keepOpen: false,
-    preventDefault: true
+    preventDefault: true,
+    resultErrorMessage: 'Unable to fetch results...'
   });
   map.addControl(geocoder);
 
